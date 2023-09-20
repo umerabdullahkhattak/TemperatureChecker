@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import reactLogo from './assets/earth.jpg'
 import './App.css'
 import Weather from './Weather' 
 
@@ -8,7 +7,7 @@ function App() {
   
 
   return (
-    <div>
+    <div className='App'>
     <Weather />
   </div>
   )

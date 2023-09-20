@@ -1,6 +1,8 @@
 // src/components/Weather.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css'
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -28,10 +30,21 @@ const Weather = () => {
     e.preventDefault();
     fetchWeatherData();
   };
+  function timeConvertr(number){
+    
+  
+  let date = new Date(number * 1000); 
+  let hours = date.getHours();
+  let minutes = "0" + date.getMinutes();
+  let seconds = "0" + date.getSeconds();
+   let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+   return formattedTime;
+  
+  }
 
   return (
-    <div>
-      <h1>Weather App</h1>
+    <div className='flex flex-col items-center  min-h-screen'>
+      <h1 className='pb-10vh'>Weather App</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -47,6 +60,11 @@ const Weather = () => {
           <p>Temperature: {roundToDecimalPlace(weatherData.main.temp- 273.15)} °C</p>
           <p>Humidity: {weatherData.main.humidity}%</p>
           <p>Description: {weatherData.weather[0].description}</p>
+          <p>Feels Like: {roundToDecimalPlace( weatherData.main.feels_like- 273.15)} °C</p>
+          <p>Max Temp: {roundToDecimalPlace( weatherData.main.temp_max- 273.15)} °C</p>
+          <p>Min Temp: {roundToDecimalPlace( weatherData.main.temp_min- 273.15)} °C</p>
+          <p>Sunrise: {timeConvertr( weatherData.sys.sunrise)}</p>
+          <p>Sunset: {timeConvertr( weatherData.sys.sunset)}</p>
         </div>
       )}
     </div>
