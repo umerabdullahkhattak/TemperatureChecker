@@ -44,9 +44,10 @@ const Weather = () => {
 
   return (
     <div className='flex flex-col items-center  min-h-screen'>
-      <h1 className='pb-10vh'>Weather App</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className='pb-10vh mb-8'>Weather App</h1>
+      <form className='mb-8' onSubmit={handleSubmit}>
         <input
+        className='bg-transparent focus:border-green-500 input-field'
           type="text"
           placeholder="Enter city"
           value={city}
@@ -56,9 +57,10 @@ const Weather = () => {
       </form>
       {weatherData && (
         <div>
-          <h2>Weather for {weatherData.name}</h2>
-          <p>Temperature: {roundToDecimalPlace(weatherData.main.temp- 273.15)} °C</p>
-          <p>Humidity: {weatherData.main.humidity}%</p>
+          <h1 className='mb-4'>{weatherData.name}</h1>
+          
+          <p className='flex flex-row justify-between '>Temperature: <span >{roundToDecimalPlace(weatherData.main.temp- 273.15)} °C</span></p>
+          <p>Humidity:  {weatherData.main.humidity}%</p>
           <p>Description: {weatherData.weather[0].description}</p>
           <p>Feels Like: {roundToDecimalPlace( weatherData.main.feels_like- 273.15)} °C</p>
           <p>Max Temp: {roundToDecimalPlace( weatherData.main.temp_max- 273.15)} °C</p>
